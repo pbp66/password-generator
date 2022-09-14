@@ -1,5 +1,5 @@
 // Assignment code here
-var specialCharacters = ["!", "#", "\"", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
+// var specialCharacters = ["!", "#", "\"", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
 
 function generatePassword() {
 
@@ -10,10 +10,10 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
+	var password = generatePassword();
+  	var passwordText = document.querySelector("#password");
+	
+  	passwordText.value = password;
 
 }
 
