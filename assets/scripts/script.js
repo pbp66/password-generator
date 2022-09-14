@@ -44,7 +44,12 @@ function generatePassword() {
 		},
 		generatePassword: function () {
 			var characterList = generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
-
+			
+			var password = "";
+			for (var i = 0; i < this.length; i++) {
+				password = password + characterList[Math.floor(Math.random() * characterList.length)];
+			}
+			return password;
 		}
 	}
 
@@ -70,7 +75,8 @@ function generatePassword() {
 	}
 
 	// Password Generation
-	password.generatePassword();
+	this.value = password.generatePassword();
+	return this.value;
 }
 
 // Get references to the #generate element
