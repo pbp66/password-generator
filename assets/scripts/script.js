@@ -12,6 +12,7 @@ function generatePassword() {
 
 	function generateAvailableCharacters(lowercase, uppercase, numeric, specialCharacters) {
 		// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
+		// TODO: Or, come up with conditionals in this function to generate an array only once?
 		var characterList = [];
 		if (lowercase) {
 			characterList = characterList.concat(generateCharacterArray(97, 122));
