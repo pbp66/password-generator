@@ -1,4 +1,5 @@
 // Assignment code here
+// TODO: Move password object outside of function. Create Constructor for it?
 
 function generatePassword() {
 	function generateCharacterArray(start, end, step = 1) {
@@ -10,6 +11,7 @@ function generatePassword() {
 	}
 
 	function generateAvailableCharacters(lowercase, uppercase, numeric, specialCharacters) {
+		// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
 		var characterList = [];
 		if (lowercase) {
 			characterList = characterList.concat(generateCharacterArray(97, 122));
@@ -44,7 +46,6 @@ function generatePassword() {
 		},
 		generatePassword: function () {
 			var characterList = generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
-			
 			var password = "";
 			for (var i = 0; i < this.length; i++) {
 				password = password + characterList[Math.floor(Math.random() * characterList.length)];
@@ -53,21 +54,20 @@ function generatePassword() {
 		}
 	}
 
-	// Taking Input
+	// Taking Input. Use the while true loop to repeat input until user enters correct input.
 	while (true) {
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
 		if (password.validateLength()) {
+			// TODO: Validate if user input is a yes or no
 			password.lowercase = prompt("Include lowercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
 			password.uppercase = prompt("Include uppercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
 			password.numeric = prompt("Include numbers?\nEnter yes or no.").toLowerCase() === 'yes';
 			password.specialCharacters = prompt("Include special characters?\nEnter yes or no.").toLowerCase() === 'yes';
-			
-			console.log(password);
 
 			if (password.validate()) {
 				break;
 			} else {
-				alert("You must specify at least one of the following character types");
+				alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
 			}
 		} else {
 			alert("The length entered was incorrect. Length must be between 8 and 128 inclusive.");
