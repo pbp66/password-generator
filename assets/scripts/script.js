@@ -4,6 +4,7 @@
 function generatePassword() {
 
 	var password = {
+		value: "",
 		length: 0,
 		lowercase: "",
 		uppercase: "",
@@ -36,6 +37,9 @@ function generatePassword() {
 			alert("The length entered was incorrect. Length must be between 8 and 128 inclusive.");
 		}
 	}
+
+	// Password Generation
+
 }
 
 // Get references to the #generate element
