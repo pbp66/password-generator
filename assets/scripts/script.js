@@ -1,5 +1,5 @@
 // Assignment code here
-// TODO: Move password object outside of function. Create Constructor for it?
+// TODO: Create Constructor for it?
 
 function generateCharacterArray(start, end, step = 1) {
 	var result = [];
