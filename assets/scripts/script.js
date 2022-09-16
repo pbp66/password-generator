@@ -20,17 +20,22 @@ var password = {
 	validateLength: function() {
 		return this.length >= 8 && this.length <= 128;
 	}, 
-	validateLowercase: function (response) {
-		return response === 'yes' || response === 'no';
-	},
-	validateUppercase: function (response) {
-		return response === 'yes' || response === 'no';
-	},
-	validateNumeric: function (response) {
-		return response === 'yes' || response === 'no';
-	},
-	validateCriteria: function () {
-		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
+	validateInput: function(attribute) {
+		var responseBool = false;
+		var response = "";
+		while(!responseBool) {
+			if (attribute !== "specialCharacters") {
+				response = prompt("Include " + attribute + " characters?\nEnter yes or no.").toLowerCase();
+			} else {
+				response = prompt("Include special characters?\nEnter yes or no.").toLowerCase();
+			}
+			responseBool = response === 'yes' || response === 'no';
+			if (!responseBool) {
+				alert("Your response was neither a yes or a no. Please try again.");
+			} else {
+				this[attribute] = response === 'yes';
+			}
+		}
 	},
 	createPassword: function () {
 		var characterList = this.generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
@@ -68,11 +73,11 @@ function generatePassword() {
 	while (true) {
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
 		if (password.validateLength()) {
-			// TODO: Validate if user input is a yes or no
-			password.lowercase = prompt("Include lowercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.uppercase = prompt("Include uppercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.numeric = prompt("Include numbers?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.specialCharacters = prompt("Include special characters?\nEnter yes or no.").toLowerCase() === 'yes';
+			// Validate each input for a yes or no response.
+			password.validateInput("lowercase");
+			password.validateInput("uppercase");
+			password.validateInput("numeric");
+			password.validateInput("specialCharacters");
 
 			if (password.validateCriteria()) {
 				break;
