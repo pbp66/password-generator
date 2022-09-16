@@ -29,6 +29,9 @@ var password = {
 	validateNumeric: function (response) {
 		return response === 'yes' || response === 'no';
 	},
+	validateSpecialCharacters: function (response) {
+		return response === 'yes' || response === 'no';
+	},
 	validateCriteria: function () {
 		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
 	},
