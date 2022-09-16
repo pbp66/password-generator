@@ -85,7 +85,6 @@ function generatePassword() {
 			alert("The length entered was incorrect. Length must be between 8 and 128 inclusive.");
 		}
 	}
-
 	// Password Generation
 	this.value = password.createPassword();
 	return this.value;
@@ -98,9 +97,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
 	var password = generatePassword();
   	var passwordText = document.querySelector("#password");
-
   	passwordText.value = password;
-
 }
 
 // Add event listener to generate button
