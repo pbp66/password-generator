@@ -1,29 +1,64 @@
 // Assignment code here
-// TODO: Move password object outside of function. Create Constructor for it?
+// TODO: Create Constructor for password object?
 
-function generatePassword() {
-	function generateCharacterArray(start, end, step = 1) {
-		var result = [];
-		for (var i = start; i <= end; i += step) {
-			result = result.concat([String.fromCharCode(i)]);
-		}
-		return result;
+function generateCharacterArray(start, end, step = 1) {
+	var result = [];
+	for (var i = start; i <= end; i += step) {
+		result = result.concat([String.fromCharCode(i)]);
 	}
+	return result;
+}
 
-	function generateAvailableCharacters(lowercase, uppercase, numeric, specialCharacters) {
+// The password object. Used to store information regarding the password criteria
+var password = {
+	value: "",
+	length: 0,
+	lowercase: "",
+	uppercase: "",
+	numeric: "",
+	specialCharacters: "",
+	validateLength: function() {
+		return this.length >= 8 && this.length <= 128;
+	}, 
+	validateInput: function(attribute) {
+		var responseBool = false;
+		var response = "";
+		while(!responseBool) {
+			if (attribute !== "specialCharacters") {
+				response = prompt("Include " + attribute + " characters?\nEnter yes or no.").toLowerCase();
+			} else {
+				response = prompt("Include special characters?\nEnter yes or no.").toLowerCase();
+			}
+			responseBool = response === 'yes' || response === 'no';
+			if (!responseBool) {
+				alert("Your response was neither a yes or a no. Please try again.");
+			} else {
+				this[attribute] = response === 'yes';
+			}
+		}
+	},
+	createPassword: function () {
+		var characterList = this.generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
+		var password = "";
+		for (var i = 0; i < this.length; i++) {
+			password = password + characterList[Math.floor(Math.random() * characterList.length)];
+		}
+		return password;
+	},
+	generateAvailableCharacters: function() {
 		// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
 		// TODO: Or, come up with conditionals in this function to generate an array only once?
 		var characterList = [];
-		if (lowercase) {
+		if (this.lowercase) {
 			characterList = characterList.concat(generateCharacterArray(97, 122));
 		}
-		if (uppercase) {
+		if (this.uppercase) {
 			characterList = characterList.concat(generateCharacterArray(65, 90));
 		}
-		if (numeric) {
+		if (this.numeric) {
 			characterList = characterList.concat(generateCharacterArray(48, 57));
 		}
-		if (specialCharacters) {
+		if (this.specialCharacters) {
 			characterList = characterList.concat(generateCharacterArray(32, 47));
 			characterList = characterList.concat(generateCharacterArray(58, 64));
 			characterList = characterList.concat(generateCharacterArray(91, 96));
@@ -31,41 +66,20 @@ function generatePassword() {
 		}
 		return characterList;
 	}
+}
 
-	var password = {
-		value: "",
-		length: 0,
-		lowercase: "",
-		uppercase: "",
-		numeric: "",
-		specialCharacters: "",
-		validateLength: function() {
-			return this.length >= 8 && this.length <= 128;
-		},
-		validate: function () {
-			return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
-		},
-		generatePassword: function () {
-			var characterList = generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
-			var password = "";
-			for (var i = 0; i < this.length; i++) {
-				password = password + characterList[Math.floor(Math.random() * characterList.length)];
-			}
-			return password;
-		}
-	}
-
+function generatePassword() {
 	// Taking Input. Use the while true loop to repeat input until user enters correct input.
 	while (true) {
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
 		if (password.validateLength()) {
-			// TODO: Validate if user input is a yes or no
-			password.lowercase = prompt("Include lowercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.uppercase = prompt("Include uppercase characters?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.numeric = prompt("Include numbers?\nEnter yes or no.").toLowerCase() === 'yes';
-			password.specialCharacters = prompt("Include special characters?\nEnter yes or no.").toLowerCase() === 'yes';
+			// Validate each input for a yes or no response.
+			password.validateInput("lowercase");
+			password.validateInput("uppercase");
+			password.validateInput("numeric");
+			password.validateInput("specialCharacters");
 
-			if (password.validate()) {
+			if (password.validateCriteria()) {
 				break;
 			} else {
 				alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
@@ -76,7 +90,7 @@ function generatePassword() {
 	}
 
 	// Password Generation
-	this.value = password.generatePassword();
+	this.value = password.createPassword();
 	return this.value;
 }
 
