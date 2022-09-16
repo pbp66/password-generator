@@ -19,6 +19,9 @@ var password = {
 	specialCharacters: "",
 	validateLength: function() {
 		return this.length >= 8 && this.length <= 128;
+	}, 
+	validateLowercase: function (response) {
+		return response === 'yes' || response === 'no';
 	},
 	validateCriteria: function () {
 		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
