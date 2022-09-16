@@ -9,29 +9,6 @@ function generateCharacterArray(start, end, step = 1) {
 	return result;
 }
 
-// TODO: Move to the password object? This method depends on the attributes of password.
-function generateAvailableCharacters(lowercase, uppercase, numeric, specialCharacters) {
-	// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
-	// TODO: Or, come up with conditionals in this function to generate an array only once?
-	var characterList = [];
-	if (lowercase) {
-		characterList = characterList.concat(generateCharacterArray(97, 122));
-	}
-	if (uppercase) {
-		characterList = characterList.concat(generateCharacterArray(65, 90));
-	}
-	if (numeric) {
-		characterList = characterList.concat(generateCharacterArray(48, 57));
-	}
-	if (specialCharacters) {
-		characterList = characterList.concat(generateCharacterArray(32, 47));
-		characterList = characterList.concat(generateCharacterArray(58, 64));
-		characterList = characterList.concat(generateCharacterArray(91, 96));
-		characterList = characterList.concat(generateCharacterArray(123, 126));
-	}
-	return characterList;
-}
-
 // The password object. Used to store information regarding the password criteria
 var password = {
 	value: "",
