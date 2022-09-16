@@ -1,6 +1,3 @@
-// Assignment code here
-// TODO: Create Constructor for password object?
-
 function generateCharacterArray(start, end, step = 1) {
 	var result = [];
 	for (var i = start; i <= end; i += step) {
