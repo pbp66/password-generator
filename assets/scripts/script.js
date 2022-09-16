@@ -46,13 +46,34 @@ var password = {
 	validateCriteria: function () {
 		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
 	},
-	generatePassword: function () {
-		var characterList = generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
+	createPassword: function () {
+		var characterList = this.generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
 		var password = "";
 		for (var i = 0; i < this.length; i++) {
 			password = password + characterList[Math.floor(Math.random() * characterList.length)];
 		}
 		return password;
+	},
+	generateAvailableCharacters: function() {
+		// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
+		// TODO: Or, come up with conditionals in this function to generate an array only once?
+		var characterList = [];
+		if (this.lowercase) {
+			characterList = characterList.concat(generateCharacterArray(97, 122));
+		}
+		if (this.uppercase) {
+			characterList = characterList.concat(generateCharacterArray(65, 90));
+		}
+		if (this.numeric) {
+			characterList = characterList.concat(generateCharacterArray(48, 57));
+		}
+		if (this.specialCharacters) {
+			characterList = characterList.concat(generateCharacterArray(32, 47));
+			characterList = characterList.concat(generateCharacterArray(58, 64));
+			characterList = characterList.concat(generateCharacterArray(91, 96));
+			characterList = characterList.concat(generateCharacterArray(123, 126));
+		}
+		return characterList;
 	}
 }
 
@@ -78,7 +99,7 @@ function generatePassword() {
 	}
 
 	// Password Generation
-	this.value = password.generatePassword();
+	this.value = password.createPassword();
 	return this.value;
 }
 
