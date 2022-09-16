@@ -23,6 +23,9 @@ var password = {
 	validateLowercase: function (response) {
 		return response === 'yes' || response === 'no';
 	},
+	validateUppercase: function (response) {
+		return response === 'yes' || response === 'no';
+	},
 	validateCriteria: function () {
 		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
 	},
