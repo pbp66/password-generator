@@ -5,20 +5,14 @@ User Story: As an employee with access to sensitive data, I want to randomly gen
 
 Acceptance Criteria: When I need a new and secure password, I click the button to generate a password and I am presented with a series of prompts for password criteria. When prompted for password criteria, I select which criteria to include in the password. When prompted for the length of the password, I choose a length of at least 8 characters and no more than 128 characters. When asked for character types to include in the password, I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters. When I answer each prompt, my input should be validated and at least one character type should be selected. When all prompts are answered, a password is generated that matches the selected criteria. When the password is generated, the password is either displayed in an alert or written to the page.
 
----
-
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+I wanted to build a script to explore java objects, conditionals, methods, loops, etc. Generating a password with selectable criteria allows me to explore these concepts. By mapping all usable characters to an array, I can use a random number generator to randomly select characters from that array and generate a random password. I learned how to use the array concat() method to dynamically generate the character array based on user input. Each input is validated for a correct response. If not, it will prompt the user to repeat the input unless the user cancels out of the prompt.
 
 ---
 ## Installation
 
 There is nothing to install with this project. To see the final product, please visit this webpage: [https://pbp66.github.io/password-generator/](https://github.com/pbp66/password-generator)
 
+---
 ## Usage
 
 Upon visiting the website, you will come across the password generator in the center of the site. Clicking the red button labeled "Generate Password" will start the script and begin prompting you for password criteria.
@@ -60,6 +54,7 @@ If you enter no for all criteria, you will receive the alert below. Clicking ok 
 
 To exit the password generation early, select cancel at any of the prompts. This will end the prompts. To proceed back through the password generation script, click the generate password button again.
 
+---
 ## Credits
 
 List your collaborators, if any, with links to their GitHub profiles.
@@ -68,6 +63,7 @@ If you used any third-party assets that require attribution, list the creators w
 
 If you followed tutorials, include links to those here as well.
 
+---
 ## License
 
 MIT License Copyright (c) 2022
