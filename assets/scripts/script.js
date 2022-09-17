@@ -46,23 +46,26 @@ var password = {
 		return password;
 	},
 	generateAvailableCharacters: function() {
-		// TODO: Change from method to hard-coded array lists? Uses more memory but saves on runtime?
-		// TODO: Or, come up with conditionals in this function to generate an array only once?
 		var characterList = [];
 		if (this.lowercase) {
-			characterList = characterList.concat(generateCharacterArray(97, 122));
+			characterList = characterList.concat(['a', 'b', 'c', 'd', 'e', 'f', 
+			'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 
+			't', 'u', 'v', 'w', 'x', 'y', 'z']);
 		}
 		if (this.uppercase) {
-			characterList = characterList.concat(generateCharacterArray(65, 90));
+			characterList = characterList.concat(['A', 'B', 'C', 'D', 'E', 'F', 
+			'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 
+			'T', 'U', 'V', 'W', 'X', 'Y', 'Z']);
 		}
 		if (this.numeric) {
-			characterList = characterList.concat(generateCharacterArray(48, 57));
+			characterList = characterList.concat(['0', '1', '2', '3', '4', '5', 
+			'6', '7', '8', '9']);
 		}
 		if (this.specialCharacters) {
-			characterList = characterList.concat(generateCharacterArray(32, 47));
-			characterList = characterList.concat(generateCharacterArray(58, 64));
-			characterList = characterList.concat(generateCharacterArray(91, 96));
-			characterList = characterList.concat(generateCharacterArray(123, 126));
+			characterList = characterList.concat([' ', '!', '"', '#', '$', '%', 
+			'&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', 
+			'=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', 
+			'~']);
 		}
 		return characterList;
 	}
