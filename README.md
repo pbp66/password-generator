@@ -36,27 +36,27 @@ It will ask you to enter a number from 8 to 128 inclusive. This number will be t
 Click ok and the program will redirect you back to the length input to try again.
 Upon successful input, you will be prompted to include or exclude lowercase characters (a-z) by entering a yes or a no.
 
-![Prompt to include lowercase characters in the password generation](./assets/images/lowercase-input.png)
+![Prompt to include lowercase characters in the password generation.](./assets/images/lowercase-input.png)
 
 Upon successful input, you will be prompted to include or exclude uppercase characters (A-Z) by entering a yes or a no.
 
-![Prompt to include uppercase characters in the password generation](./assets/images/uppercase-input.png)
+![Prompt to include uppercase characters in the password generation.](./assets/images/uppercase-input.png)
 
 Upon successful input, you will be prompted to include or exclude numeric characters (0-9) by entering a yes or a no.
 
-![Prompt to include numeric characters in the password generation](./assets/images/numeric-input.png)
+![Prompt to include numeric characters in the password generation.](./assets/images/numeric-input.png)
 
 Upon successful input, you will be prompted to include or exclude special characters ( !"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~) by entering a yes or a no.
 
-![Prompt to include special characters in the password generation](./assets/images/special-character-input.png)
+![Prompt to include special characters in the password generation.](./assets/images/special-character-input.png)
 
 If you input a response that is neither a yes nor a no, e.g. 4, hi, asldkfhj, etc, you will receive the alert below. Clicking ok will redirect you back to the previous question for proper input.
 
-![alt text](./assets/images/wrong-input.png)
+![Alert indicating neither a yes nor a no was entered.](./assets/images/wrong-input.png)
 
 If you enter no for all criteria, you will receive the alert below. Clicking ok will redirect you to the beginning of the prompts to start over. 
 
-![alt text](./assets/images/no-criteria-specified.png)
+![Alert indicating that all criteria was excluded from selection. At least one of the above criteria must be selected.](./assets/images/no-criteria-specified.png)
 
 To exit the password generation early, select cancel at any of the prompts. This will end the prompts. To proceed back through the password generation script, click the generate password button again.
 
