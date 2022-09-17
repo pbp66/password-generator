@@ -1,6 +1,6 @@
 // The password object. Used to store information regarding the password criteria
 var password = {
-	value: "",
+	value: " ",
 	length: 0,
 	lowercase: "",
 	uppercase: "",
@@ -11,6 +11,10 @@ var password = {
 	}, 
 	validateInput: function(attribute) {
 		// TODO: Catch null return and exit program.
+		if (password.value === null) {
+			return;
+		}
+
 		var responseBool = false;
 		var response = "";
 		while(!responseBool) {
@@ -20,20 +24,25 @@ var password = {
 				} else {
 					response = prompt("Include special characters?\nEnter yes or no.").toLowerCase();
 				}
+
 				responseBool = response === 'yes' || response === 'no';
+
 				if (!responseBool) {
 					alert("Your response was neither a yes or a no. Please try again.");
 				} else {
 					this[attribute] = response === 'yes';
 				}
+
 			} catch (error) {
+				password.value = null;
+				responseBool = true;
+
 				if (error instanceof TypeError) {
 					console.log("User exited the prompt. Exiting program.")
 				} else {
 					console.log("Error occurred: " + typeof error);
 				}
-			} finally {
-				password.value = null;
+
 				break;
 			}
 		}
@@ -77,6 +86,7 @@ var password = {
 
 function generatePassword() {
 	// Taking Input. Use the while true loop to repeat input until user enters correct input.
+	password.value = " ";
 	while (true) {
 		// TODO: Catch null return and exit program for all inputs
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
@@ -85,6 +95,7 @@ function generatePassword() {
 			password.value = null;
 			break;
 		}
+
 		if (password.validateLength()) {
 			// Validate each input for a yes or no response.
 			password.validateInput("lowercase");
@@ -92,7 +103,7 @@ function generatePassword() {
 			password.validateInput("numeric");
 			password.validateInput("specialCharacters");
 
-			if (password.validateAll()) {
+			if (password.value === null || password.validateAll()) {
 				break;
 			} else {
 				alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
@@ -116,7 +127,7 @@ function writePassword() {
   		var passwordText = document.querySelector("#password");
   		passwordText.value = password;
 	} else {
-		return;
+		return "";
 	}
 }
 
