@@ -1,11 +1,3 @@
-function generateCharacterArray(start, end, step = 1) {
-	var result = [];
-	for (var i = start; i <= end; i += step) {
-		result = result.concat([String.fromCharCode(i)]);
-	}
-	return result;
-}
-
 // The password object. Used to store information regarding the password criteria
 var password = {
 	value: "",
