@@ -27,7 +27,11 @@ var password = {
 					this[attribute] = response === 'yes';
 				}
 			} catch (error) {
-
+				if (error instanceof TypeError) {
+					console.log("User exited the prompt. Exiting program.")
+				} else {
+					console.log("Error occurred: " + typeof error);
+				}
 			} finally {
 				password.value = null;
 				break;
@@ -77,6 +81,7 @@ function generatePassword() {
 		// TODO: Catch null return and exit program for all inputs
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
 		if (password.length === null || isNaN(password.length)) {
+			console.log("User exited the prompt. Exiting program.")
 			password.value = null;
 			break;
 		}
