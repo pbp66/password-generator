@@ -21,13 +21,33 @@ There is nothing to install with this project. To see the final product, please 
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Upon visiting the website, you will come across the password generator in the center of the site. Clicking the red button labeled "Generate Password" will start the script and begin prompting you for password criteria.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+![Click a large red button to generate a password](./assets/images/password-generator-overview.png)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+After clicking the button, the length prompt appears at the top of your browser:
+
+![Prompt appears asking you to input a password length between 8 and 128 characters inclusive.](./assets/images/length-criteria.png)
+
+It will ask you to enter a number from 8 to 128 inclusive. This number will be the length of your password. If you enter a number outside of the range or a non-numeric character, you will receive the following alert:
+
+![Alert indicating the entered length was incorrect.](./assets/images/wrong-length-input.png)
+
+Click ok and the program will redirect you back to the length input to try again.
+Upon successful input, you will be prompted to include or exclude lowercase character by entering a yes or a no.
+
+![Prompt to include lowercase characters in the password generation](./assets/images/lowercase-input.png)
+                    
+![alt text](./assets/images/uppercase-input.png)
+
+![alt text](./assets/images/numeric-input.png)
+
+![alt text](./assets/images/special-character-input.png)
+
+![alt text](./assets/images/wrong-input.png)
+
+![alt text](./assets/images/no-criteria-specified.png)
+
 
 ## Credits
 
