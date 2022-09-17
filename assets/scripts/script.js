@@ -7,9 +7,11 @@ var password = {
 	numeric: "",
 	specialCharacters: "",
 	validateLength: function() {
+		// TODO: Catch null return and exit program.
 		return this.length >= 8 && this.length <= 128;
 	}, 
 	validateInput: function(attribute) {
+		// TODO: Catch null return and exit program.
 		var responseBool = false;
 		var response = "";
 		while(!responseBool) {
