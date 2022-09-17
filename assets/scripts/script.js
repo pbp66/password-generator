@@ -34,6 +34,9 @@ var password = {
 			}
 		}
 	},
+	validateAll: function() {
+		return this.lowercase || this.uppercase || this.numeric || this.specialCharacters;
+	},
 	createPassword: function () {
 		var characterList = this.generateAvailableCharacters(this.lowercase, this.uppercase, this.numeric, this.specialCharacters);
 		var password = "";
@@ -76,7 +79,7 @@ function generatePassword() {
 			password.validateInput("numeric");
 			password.validateInput("specialCharacters");
 
-			if (password.validateCriteria()) {
+			if (password.validateAll()) {
 				break;
 			} else {
 				alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
