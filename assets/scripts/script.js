@@ -7,7 +7,6 @@ var password = {
 	numeric: "",
 	specialCharacters: "",
 	validateLength: function() {
-		// TODO: Catch null return and exit program.
 		return this.length >= 8 && this.length <= 128;
 	}, 
 	validateInput: function(attribute) {
@@ -15,16 +14,23 @@ var password = {
 		var responseBool = false;
 		var response = "";
 		while(!responseBool) {
-			if (attribute !== "specialCharacters") {
-				response = prompt("Include " + attribute + " characters?\nEnter yes or no.").toLowerCase();
-			} else {
-				response = prompt("Include special characters?\nEnter yes or no.").toLowerCase();
-			}
-			responseBool = response === 'yes' || response === 'no';
-			if (!responseBool) {
-				alert("Your response was neither a yes or a no. Please try again.");
-			} else {
-				this[attribute] = response === 'yes';
+			try {
+				if (attribute !== "specialCharacters") {
+					response = prompt("Include " + attribute + " characters?\nEnter yes or no.").toLowerCase();
+				} else {
+					response = prompt("Include special characters?\nEnter yes or no.").toLowerCase();
+				}
+				responseBool = response === 'yes' || response === 'no';
+				if (!responseBool) {
+					alert("Your response was neither a yes or a no. Please try again.");
+				} else {
+					this[attribute] = response === 'yes';
+				}
+			} catch (error) {
+
+			} finally {
+				password.value = null;
+				break;
 			}
 		}
 	},
@@ -68,7 +74,12 @@ var password = {
 function generatePassword() {
 	// Taking Input. Use the while true loop to repeat input until user enters correct input.
 	while (true) {
+		// TODO: Catch null return and exit program for all inputs
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
+		if (password.length === null || isNaN(password.length)) {
+			password.value = null;
+			break;
+		}
 		if (password.validateLength()) {
 			// Validate each input for a yes or no response.
 			password.validateInput("lowercase");
@@ -96,8 +107,12 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
 	var password = generatePassword();
-  	var passwordText = document.querySelector("#password");
-  	passwordText.value = password;
+	if (!password === null) {
+  		var passwordText = document.querySelector("#password");
+  		passwordText.value = password;
+	} else {
+		return;
+	}
 }
 
 // Add event listener to generate button
