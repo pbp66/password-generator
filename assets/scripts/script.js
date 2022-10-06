@@ -83,8 +83,9 @@ var password = {
 	}
 }
 
-function exitProgram() {
-	
+function exitResponse() {
+	console.log("User exited the prompt. Exiting program.");
+	alert("Prompt has been canceled. Exiting the password generator program");
 }
 
 function generatePassword() {
@@ -100,9 +101,8 @@ function generatePassword() {
 		// TODO: Catch null return and exit program for all inputs
 		lengthInput = prompt("Enter a password length between 8 and 128 characters inclusive:");
 		if (lengthInput === null) {
-			console.log("User exited the prompt. Exiting program.");
-			alert("Prompt has been canceled. Exiting the password generator program");
 			exitProgram = true;
+			exitResponse();
 			break;
 		}
 
@@ -112,8 +112,6 @@ function generatePassword() {
 			continue;
 		}
 
-		console.log("Password length: " + password.length);
-
 		// Validate each input for a yes or no response.
 		for (var i = 0; i < criteria.length; i++) {
 			validInput = password.validateInput(criteria[i]);
@@ -121,9 +119,9 @@ function generatePassword() {
 			// Exit program if user cancels prompt
 			if (!validInput) {
 				exitProgram = true;
+				exitResponse();
 				break inputLoop; // Will break out of the inputLoop if a user does not provide a valid input.
 			}
-			console.log(criteria[i] + ": " + password[criteria[i]]);
 		}
 
 		// Validate all inputs as long as the user hasn't exited any prompts. 
