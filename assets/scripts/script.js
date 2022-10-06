@@ -10,7 +10,6 @@ var password = {
 		return this.length >= 8 && this.length <= 128;
 	}, 
 	validateInput: function(attribute) {
-		// TODO: Catch null return and exit program.
 		var responseBool = false; // Status of user input. True if valid. False if not.
 		var response = "";
 		var exitProgram = false; // If user cancels prompt, exit the program.
@@ -38,6 +37,8 @@ var password = {
 				this[attribute] = response === 'yes';
 			}
 		}
+
+		return !exitProgram; // If the user cancels the input, the input is not verified and therefore this method will return false
 	},
 	
 	// Returns true if at least one password criteria is accepted. Returns false if all are rejected.
@@ -82,54 +83,62 @@ var password = {
 	}
 }
 
+function exitProgram() {
+	
+}
+
 function generatePassword() {
 	// Taking Input. Use the while true loop to repeat input until user enters correct input or exits the prompts.
 	var exitProgram = false; // Status flag to check if the user wants to exit the prompts.
 	password.value = "";
+	var validInput = true; // Status flag for valid input.
+	var lengthInput;
+	var criteria = ["lowercase", "uppercase", "numeric", "specialCharacters"];
+
+	inputLoop:
 	while (!exitProgram) {
 		// TODO: Catch null return and exit program for all inputs
-		var answer = prompt("Enter a password length between 8 and 128 characters inclusive:");
-		if (answer === null) {
+		lengthInput = prompt("Enter a password length between 8 and 128 characters inclusive:");
+		if (lengthInput === null) {
 			console.log("User exited the prompt. Exiting program.");
+			alert("Prompt has been canceled. Exiting the password generator program");
 			exitProgram = true;
+			break;
+		}
+
+		password.length = parseInt(lengthInput);
+		if (isNaN(password.length) || !password.validateLength()) {
+			alert("The inputted password length is not valid. Please specify a number between 8 and 128 inclusive.\n\nYour input was: " + lengthInput);
 			continue;
 		}
 
-		password.length = parseInt(answer);
 		console.log("Password length: " + password.length);
-		if (isNaN(password.length)) {
-			alert("The password length specified is not a number. Please specify a number between 8 and 128 inclusive.\nYour input was: " + answer);
+
+		// Validate each input for a yes or no response.
+		for (var i = 0; i < criteria.length; i++) {
+			validInput = password.validateInput(criteria[i]);
+		
+			// Exit program if user cancels prompt
+			if (!validInput) {
+				exitProgram = true;
+				break inputLoop; // Will break out of the inputLoop if a user does not provide a valid input.
+			}
+			console.log(criteria[i] + ": " + password[criteria[i]]);
+		}
+
+		// Validate all inputs as long as the user hasn't exited any prompts. 
+		if (!password.validateAll()) {
+			alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
 			continue;
 		}
 
-		if (password.validateLength()) {
-			// Validate each input for a yes or no response.
-			password.validateInput("lowercase");
-			console.log("lowercase: " + password.lowercase);
-			password.validateInput("uppercase");
-			console.log("uppercase: " + password.uppercase);
-			password.validateInput("numeric");
-			console.log("numeric: " + password.numeric);
-			password.validateInput("specialCharacters");
-			console.log("specialCharacters: " + password.specialCharacters);
-
-			console.log(("Password value: " + password.value))
-
-			console.log("ValidateAll response: " + password.validateAll());
-
-			if (!password.validateAll()) {
-				alert("You must specify at least one of the following character types: lowercase, uppercase, numeric, and or special characters");
-			}
-
+		// Password Generation
+		if (!exitProgram) {
+			return password.createPassword();
 		} else {
-			alert("The length entered was incorrect. Length must be between 8 and 128 inclusive.");
+			return null;
 		}
 	}
-	// Password Generation
-	if (!exitProgram) {
-		this.value = password.createPassword();
-	}
-	return this.value;
 }
 
 // Get references to the #generate element
