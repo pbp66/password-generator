@@ -86,23 +86,32 @@ var password = {
 
 function generatePassword() {
 	// Taking Input. Use the while true loop to repeat input until user enters correct input.
-	password.value = " ";
+	password.value = "";
 	while (true) {
 		// TODO: Catch null return and exit program for all inputs
-		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
-		console.log(password.length);
-		if (password.length === null || isNaN(password.length)) {
-			console.log("User exited the prompt. Exiting program.")
+		var answer = prompt("Enter a password length between 8 and 128 characters inclusive:");
+		if (answer === null) {
+			console.log("User exited the prompt. Exiting program.");
 			password.value = null;
+			break
+		}
+		password.length = parseInt(answer);
+		console.log("Password length: " + password.length);
+		if (isNaN(password.length)) {
+			alert("The password length specified is not a number. Please specify a number between 8 and 128 inclusive.\nYour input was: " + answer);
 			continue;
 		}
 
 		if (password.validateLength()) {
 			// Validate each input for a yes or no response.
 			password.validateInput("lowercase");
+			console.log("lowercase: " + password.lowercase);
 			password.validateInput("uppercase");
+			console.log("uppercase: " + password.uppercase);
 			password.validateInput("numeric");
+			console.log("numeric: " + password.numeric);
 			password.validateInput("specialCharacters");
+			console.log("specialCharacters: " + password.specialCharacters);
 
 			if (password.value === null || password.validateAll()) {
 				break;
