@@ -90,10 +90,11 @@ function generatePassword() {
 	while (true) {
 		// TODO: Catch null return and exit program for all inputs
 		password.length = parseInt(prompt("Enter a password length between 8 and 128 characters inclusive:"));
+		console.log(password.length);
 		if (password.length === null || isNaN(password.length)) {
 			console.log("User exited the prompt. Exiting program.")
 			password.value = null;
-			break;
+			continue;
 		}
 
 		if (password.validateLength()) {
