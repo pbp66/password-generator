@@ -135,9 +135,11 @@ function generatePassword(passwordObj) {
 
 		// Password Generation
 		if (!exitProgram) {
-			return passwordObj.createPassword();
+			passwordObj.createPassword();
+			return;
 		} else {
-			return null;
+			password.value = null;
+			return;
 		}
 	}
 }
@@ -147,12 +149,11 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-	result = generatePassword(password);
-	console.log(password);
-	console.log(result);
-	if (result !== null) {
+	generatePassword(password);
+	//result = generatePassword(password);
+	if (password.value !== null) {
   		var passwordText = document.querySelector("#password");
-  		passwordText.value = result;
+  		passwordText.value = password.value;
 	} else {
 		return "";
 	}
