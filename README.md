@@ -10,7 +10,7 @@ I wanted to build a script to explore java objects, conditionals, methods, loops
 ---
 ## Installation
 
-There is nothing to install with this project. To see the final product, please visit this webpage: [https://pbp66.github.io/password-generator/](https://github.com/pbp66/password-generator)
+There is nothing to install with this project. To see the final product, please visit this webpage: [https://pbp66.github.io/password-generator/](https://pbp66.github.io/password-generator/)
 
 ---
 ## Usage
